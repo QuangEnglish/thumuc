@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Moverment2D : MonoBehaviour
+{
+    Transform playerMove;
+    float jumpAmount = 3;
+    public Rigidbody2D rb;
+    Vector2 movement;
+    public Animator ani;
+
+    public void Moving()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            playerMove = gameObject.GetComponent<Transform>();
+            playerMove.Translate(Vector3.left * Time.deltaTime*2);
+            ani.SetBool("left", true);
+        }
+        else
+        {
+            ani.SetBool("left", false);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            playerMove = gameObject.GetComponent<Transform>();
+            playerMove.Translate(Vector3.right * Time.deltaTime*2);
+            ani.SetBool("right", true);
+        }
+        else
+        {
+            ani.SetBool("right", false);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+            ani.SetBool("jump", true);
+        }
+        else
+        {
+            ani.SetBool("jump", false);
+        }
+    }
+
+    void Update()
+    {
+        Moving();
+    }
+}
