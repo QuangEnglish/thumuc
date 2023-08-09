@@ -1,0 +1,207 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace LuyenLanCuoi
+{
+    internal class Program
+    {
+        static List<NhanVien> listNv = new List<NhanVien>();
+        static void Them()
+        {
+            int n;
+            do
+            {
+                Console.WriteLine("Nhap so nguoi n: ");
+                n = int.Parse(Console.ReadLine());
+            } while (n <= 0 || n > 10);
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine("Nhap nhan vien thu {0}: ", i + 1);
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.Nhap();
+                if(listNv.Any(nv => nv.MaNhanVien == nhanVien.MaNhanVien))
+                {
+                    Console.WriteLine("Nhan vien da ton tai!");
+                    i--;
+                }
+                else
+                {
+                    listNv.Add(nhanVien);
+                    Console.WriteLine("Them thanh cong!");
+                }
+            }
+        }
+        static void HienThi()
+        {
+            Console.WriteLine("\n==============================================Danh sach nhan vien=======================================");
+            Console.WriteLine("{0, -20}{1, -20}{2, -20}{3, -20}{4, -20}{5, -20}", "Ho ten", "Dia chi", "Ma nhan vien", "Chuc vu", "Luong", "He so chuc vu");
+            foreach(NhanVien nv in listNv)
+            {
+                nv.Xuat();
+            }
+            Console.ReadLine();
+        }
+        static void InDanhSach()
+        {
+            int hcvMax = listNv[0].HeSoChucVu();
+            for(int i = 0; i < listNv.Count; i++)
+            {
+                if (listNv[i].HeSoChucVu() > hcvMax)
+                {
+                    hcvMax = listNv[i].HeSoChucVu();
+                }
+            }
+            Console.WriteLine("\n=================================Danh sach nhan vien co he so chuc vu max=================================");
+            Console.WriteLine("{0, -20}{1, -20}{2, -20}{3, -20}{4, -20}{5, -20}", "Ho ten", "Dia chi", "Ma nhan vien", "Chuc vu", "Luong", "He so chuc vu");
+            foreach (NhanVien nv in listNv)
+            {
+                if(nv.HeSoChucVu() == hcvMax)
+                {
+                    nv.Xuat();
+                }
+            }
+        }
+        static void XoaNhanVien()
+        {
+            for (int i = 0; i < listNv.Count; i++)
+            {
+                if (listNv[i].HeSoChucVu() == 10)
+                {
+                    listNv.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+        
+        static void Main(string[] args)
+        {
+           while(true)
+            {
+                Console.WriteLine("========Menu=======");
+                Console.WriteLine("1. Them nhan vien");
+                Console.WriteLine("2. Hien thi danh sach");
+                Console.WriteLine("3. Sap xep nhan vien");
+                Console.WriteLine("4. Danh sach nhan vien co he so chuc vu max");
+                Console.WriteLine("5. Xoa nhan vien");
+                Console.WriteLine("0. Thoat chuong trinh");
+                Console.WriteLine("Nhap lua chon: ");
+                string luaChon = Console.ReadLine();
+                switch(luaChon)
+                {
+                    case "1":
+                        Them();
+                        break;
+                    case "2":
+                        HienThi();
+                        break;
+                    case "3":
+                        listNv.Sort(new SoSanh());
+                        HienThi();
+                        break;
+                    case "4":
+                        InDanhSach();
+                        break;
+                    case "5":
+                        XoaNhanVien();
+                        break;
+                    case "0":
+                        Console.WriteLine("Da thoat chuong trinh");
+                        return;
+                    default :
+                        Console.WriteLine("Nhap sai! Yeu cau nhap lai! ");
+                        break;
+                }
+            }
+        }
+    }
+}
+
+
+
+===========================================================================================
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LuyenLanCuoi
+{
+    internal class NhanVien : Person
+    {
+        private string maNhanVien;
+        private string chucVu;
+        private double luong;
+        public string MaNhanVien
+        {
+            get { return maNhanVien; }
+            set { maNhanVien = value;}
+        }
+        public string ChucVu
+        {
+            get { return chucVu; }
+            set { chucVu = value;}
+        }
+        public double Luong
+        {
+            get { return luong; }  
+            set { luong = value;}
+        }
+        public NhanVien() : base()
+        {
+
+        }
+        public NhanVien(string ht, string dc, string maNhanVien, string chucVu, double luong) : base(ht, dc)
+        {
+            this.maNhanVien=maNhanVien;
+            this.chucVu=chucVu;
+            this.luong=luong;
+        }
+        public override void Nhap()
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            base.Nhap();
+            Console.Write("Nhap ma nhan vien: ");
+            MaNhanVien = Console.ReadLine();
+            Console.Write("Nhap chuc vu: ");
+            ChucVu = Console.ReadLine();
+            bool isNumber = true;
+            do
+            {
+                try
+                {
+                    Console.Write("Nhap luong: ");
+                    Luong = double.Parse(Console.ReadLine());
+                    isNumber = true;
+                }catch(FormatException e)
+                {
+                    Console.WriteLine("Ban can nhap so!");
+                    isNumber = false;
+                }
+            }while (!isNumber);
+        }
+        public override void Xuat()
+        {
+            base.Xuat();
+            Console.WriteLine("{0, -20}{1, -20}{2, -20}{3, -20}", MaNhanVien, ChucVu, Luong, HeSoChucVu());
+        }
+        public int HeSoChucVu()
+        {
+            switch (ChucVu)
+            {
+                case "Giam doc":
+                    return 10;
+                case "Truong phong":
+                case "Pho giam doc":
+                    return 6;
+                case "Pho phong":
+                    return 4;
+                default:
+                    return 2;
+            }
+        }
+
+
+    }
+}
