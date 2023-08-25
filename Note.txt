@@ -1,0 +1,288 @@
+ StringFormat='\{0:n0\}'}"
+
+Scaffold-DbContext “Data Source=LAPTOP-VBLUUCQJ\SQLEXPRESS;Initial Catalog=QLSach;Integrated Security=True” Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+ var item = dsSanPham.SelectedItem;
+            MaSP.Text =  (dsSanPham.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+
+=========================================================================================
+       Title="MainWindow" Height="650" Width="800" FontSize="15" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="Blue"></Setter>
+            <Setter Property="FontFamily" Value="Time new roman"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="100"></Setter>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="Yellow"></Setter>
+            <Setter Property="Foreground" Value="red"></Setter>
+        </Style>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Label Content="Quản lý công nhân" HorizontalAlignment="Left" Margin="289,22,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Mã công nhân" HorizontalAlignment="Left" Margin="90,100,0,0" VerticalAlignment="Top" Width="120" />
+        <Label Content="Họ tên" HorizontalAlignment="Left" Margin="90,150,0,0" VerticalAlignment="Top" Width="120" />
+        <Label Content="Ngày công" HorizontalAlignment="Left" Margin="90,200,0,0" VerticalAlignment="Top" Width="120" />
+        <Label Content="Phụ cấp" HorizontalAlignment="Left" Margin="90,250,0,0" VerticalAlignment="Top" Width="120" />
+        <Label Content="Phòng" HorizontalAlignment="Left" Margin="90,300,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="txtMaCongNhan" HorizontalAlignment="Left" Margin="285,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365" Height="30"/>
+        <TextBox x:Name="txtHoTen" HorizontalAlignment="Left" Margin="285,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365" Height="30"/>
+        <TextBox x:Name="txtNgayCong" HorizontalAlignment="Left" Margin="285,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365" Height="30"/>
+        <TextBox x:Name="txtPhuCap" HorizontalAlignment="Left" Margin="285,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365" Height="30"/>
+        <ComboBox Name="cboPhong" HorizontalAlignment="Left" Margin="285,300,0,0" VerticalAlignment="Top" Width="365" Height="30"/>
+        <DataGrid x:Name="dgvCongNhan" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgvCongNhan_SelectionChanged" Margin="20,354,20,120">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Mã CN" Binding="{Binding MaCongNhan, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Họ tên" Binding="{Binding MaCongNhan, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Ngày công" Binding="{Binding MaCongNhan, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Phụ cấp" Binding="{Binding MaCongNhan, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Mã phòng" Binding="{Binding MaCongNhan, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Lương" Binding="{Binding MaCongNhan, Mode=OneWay, StringFormat='\{n:0n\}'}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnThem" Content="Thêm" HorizontalAlignment="Left" Margin="96,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnThem_Click"/>
+        <Button x:Name="btnSua" Content="Sửa" HorizontalAlignment="Left" Margin="216,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnSua_Click"/>
+        <Button x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" Margin="336,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnXoa_Click"/>
+        <Button x:Name="btnTim" Content="Tìm" HorizontalAlignment="Left" Margin="456,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnTim_Click"/>
+        <Button x:Name="btnThongKe" Content="Thống kê" HorizontalAlignment="Left" Margin="576,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnThongKe_Click"/>
+
+    </Grid>
+================================================================================================
+        <DataGrid x:Name="dgvSanPham" AutoGenerateColumns="False" CanUserAddRows="False" Margin="25,349,25,95" SelectionChanged="dgvSanPham_SelectedCellsChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Mã sản phẩm" Binding="{Binding MaSp, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Tên sản phẩm" Binding="{Binding TenSp, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Mã loại sản phẩm" Binding="{Binding MaLoai, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Số lượng" Binding="{Binding SoLuong, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Đơn giá" Binding="{Binding DonGia, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Header="Thành tiền" Binding="{Binding ThanhTien, Mode=OneWay, StringFormat='\{0:n0\}'}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+=====================================================================================================
+       QLBanHangContext db = new QLBanHangContext();
+       public MainWindow()
+       {
+           InitializeComponent();
+
+       }
+       public void DataComboBox()
+       {
+           var query = from l in db.LoaiSanPhams
+                       select l;
+           cboLoaiSP.ItemsSource = query.ToList();
+           cboLoaiSP.DisplayMemberPath = "TenLoai";
+           cboLoaiSP.SelectedValuePath = "MaLoai";
+           cboLoaiSP.SelectedIndex = 0;
+
+       }
+       public void HienThi()
+       {
+           var query = from sp in db.SanPhams
+                       orderby sp.MaSp
+                       select new
+                       {
+                           sp.MaSp,
+                           sp.TenSp,
+                           sp.MaLoai,
+                           sp.DonGia,
+                           sp.SoLuong,
+                           ThanhTien = sp.DonGia * sp.SoLuong
+                       };
+           dgvSanPham.ItemsSource = query.ToList();
+       }
+       public void Clear()
+       {
+           txtMaSP.Text = "";
+           txtTenSP.Text = "";
+           txtDonGia.Text = "";
+           txtSoLuong.Text = "";
+           cboLoaiSP.SelectedIndex = 0;
+       }
+       private void dgvSanPham_SelectedCellsChanged(object sender, SelectionChangedEventArgs e)
+       {
+           var item = dgvSanPham.SelectedItem;
+           if (item != null)
+           {
+               txtMaSP.Text = (dgvSanPham.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+               txtTenSP.Text = (dgvSanPham.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+               cboLoaiSP.SelectedValue = (dgvSanPham.SelectedCells[2].Column.GetCellContent(item) as TextBlock).Text;
+               txtDonGia.Text = (dgvSanPham.SelectedCells[3].Column.GetCellContent(item) as TextBlock).Text;
+               txtSoLuong.Text = (dgvSanPham.SelectedCells[4].Column.GetCellContent(item) as TextBlock).Text;
+
+           }
+
+       }
+       private void Window_Loaded(object sender, RoutedEventArgs e)
+       {
+           DataComboBox();
+           HienThi();
+       }
+       private bool CheckDL()
+       {
+           string tb = "";
+           if (txtMaSP.Text == "" || txtTenSP.Text == "" || txtDonGia.Text == "" || txtSoLuong.Text == "")
+           {
+               tb += "\nBan can nhap day du du lieu";
+           }
+           double dg;
+           if (!double.TryParse(txtDonGia.Text, out dg))
+           {
+               tb += "\nBan can nhap don gia la so";
+           }
+           int sl;
+           if (!int.TryParse(txtSoLuong.Text, out sl) || int.Parse(txtSoLuong.Text) < 1)
+           {
+               tb += "\nBan can nhap so luong la so va phai >= 1!";
+           }
+           if (tb != "")
+           {
+               MessageBox.Show(tb, "Thong bao", MessageBoxButton.OK, MessageBoxImage.Error);
+               return false;
+           }
+           return true;
+       }
+       private void btnThem_Click(object sender, RoutedEventArgs e)
+       {
+           try
+           {
+           if (CheckDL())
+           {
+               var query = db.SanPhams.SingleOrDefault(x => x.MaSp.Equals(int.Parse(txtMaSP.Text)));
+               if (query != null)
+               {
+                   MessageBox.Show("Da ton tai ma san pham nay!", "Thong bao", MessageBoxButton.OK, MessageBoxImage.Error);
+               }
+               else
+               {
+                   SanPham sp = new SanPham();
+                   sp.MaSp = int.Parse(txtMaSP.Text);
+                   sp.TenSp = txtTenSP.Text;
+                   LoaiSanPham loaiSanPham = (LoaiSanPham)cboLoaiSP.SelectedItem;
+                   sp.MaLoai = loaiSanPham.MaLoai;
+                   sp.DonGia = double.Parse(txtDonGia.Text);
+                   sp.SoLuong = int.Parse(txtSoLuong.Text);
+                   db.SanPhams.Add(sp);
+                   db.SaveChanges();
+                   MessageBox.Show("Them thanh cong!", "Thong bao");
+                   Clear();
+                   HienThi();
+               }
+           }
+
+       }
+       catch (Exception ex)
+           {
+               MessageBox.Show("Có lỗi khi thêm: " + ex.Message, "Thông báo");
+           }
+       }
+
+
+
+       private void btnSua_Click(object sender, RoutedEventArgs e)
+       {
+           var query = db.SanPhams.SingleOrDefault(x => x.MaSp.Equals(int.Parse(txtMaSP.Text)));
+           if(query != null)
+           {
+               query.TenSp = txtTenSP.Text;
+               query.DonGia = double.Parse(txtDonGia.Text);
+               query.SoLuong = int.Parse(txtSoLuong.Text);
+               LoaiSanPham loaiSanPham = (LoaiSanPham)cboLoaiSP.SelectedItem;
+               query.MaLoai = loaiSanPham.MaLoai;
+               db.SaveChanges();
+               MessageBox.Show("Sua thanh cong!", "Thong bao");
+               Clear();
+               HienThi() ;
+           }
+           else
+           {
+               MessageBox.Show("Khong tim thay ma san pham!", "Thong bao");
+           }
+       }
+
+       private void btnXoa_Click(object sender, RoutedEventArgs e)
+       {
+           if(txtMaSP.Text != "")
+           {
+               var query = db.SanPhams.SingleOrDefault(sp => sp.MaSp.Equals(int.Parse(txtMaSP.Text)));
+               if(query != null)
+               {
+                   MessageBoxResult rs = MessageBox.Show("Ban co chac chan muon xoa!", "Thong bao", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                   if(rs == MessageBoxResult.Yes)
+                   {
+                       db.SanPhams.Remove(query);
+                       db.SaveChanges();
+                       Clear();
+                       HienThi();
+                   }
+               }
+               else
+               {
+                   MessageBox.Show("San pham can xoa khong ton tai!", "Thong bao", MessageBoxButton.OK, MessageBoxImage.Error);
+               }
+           }
+           else
+           {
+               MessageBox.Show("Chua nhap ma san pham can xoa!", "Thong bao", MessageBoxButton.OK, MessageBoxImage.Error);
+           }
+       }
+
+       private void btnTim_Click(object sender, RoutedEventArgs e)
+       {
+           if(cboLoai.SelectedIndex >= 0)
+           {
+               try
+               {
+                   Loai loai = (Loai)cboLoai.SelectedItem;
+                   var query = from sp in db.SanPhams
+                               orderby sp.MaLoai
+                               where sp.MaLoai == loai.MaLoai
+                               select new
+                               {
+                                   sp.MaSanPham,
+                                   sp.TenSanPham,
+                                   sp.DonGia,
+                                   sp.SoLuong,
+                                   Thanh Tien = (sp.SoLuong >= 3) ? 300000 : (sp.SoLuong > 1 && sp.SoLuong < 3) ? 150000 : 0
+                               };
+                   dgvSinhVien.ItemsSource = null;
+                   dgvSinhVien.ItemsSource = query.ToList();
+               }catch( Exception ex ) {
+                   MessageBox.Show("Co loi:" + ex.Message, "Thong baao");
+               }
+           }
+       }
+
+       private void btnThongKe_Click(object sender, RoutedEventArgs e)
+       {
+           Window1 w1 = new Window1();
+           w1.Show();
+       }
+//thong ke tong nhom hang
+       private void HienThiDL()
+       {
+           var query = from cn in db.CongNhans
+                       group cn by cn.MaPhong into Phong
+                       select new
+                       {
+                           MaPhong = Phong.Key,
+                           TongLuong = Phong.Sum(x=> x.NgayCong * 100000 + x.PhuCap)
+                       };
+           var query2 = from pm in query
+                        join p in db.Phongs
+                        on pm.MaPhong equals p.MaPhong
+                        select new
+                        {
+                            p.MaPhong,
+                            p.TenPhong,
+                            pm.TongLuong
+                        };
+           dgvThongKe.ItemsSource = query2.ToList();
+       }
