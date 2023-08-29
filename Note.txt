@@ -34,7 +34,7 @@ Scaffold-DbContext “Data Source=LAPTOP-VBLUUCQJ\SQLEXPRESS;Initial Catalog=QLB
             <ComboBox Name="cboLoaiSanPham" HorizontalAlignment="Left" Margin="285,200,0,0" VerticalAlignment="Top" Width="365" Height="30"/>
             <TextBox x:Name="txtDonGia" HorizontalAlignment="Left" Margin="285,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365" Height="30"/>
             <TextBox x:Name="txtSoLuong" HorizontalAlignment="Left" Margin="285,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="365" Height="30"/>
-            <DataGrid x:Name="dgvSanPham" AutoGenerateColumns="False" CanUserAddRows="False" Margin="20,354,20,120" SelectionChanged="dgvCongNhan_SelectionChanged">
+            <DataGrid x:Name="dgvSanPham" AutoGenerateColumns="False" CanUserAddRows="False" Margin="20,354,20,120" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" Header="Mã SP" Binding="{Binding MaSp, Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn Width="*" Header="Tên SP" Binding="{Binding TenSp, Mode=OneWay}"></DataGridTextColumn>
@@ -44,11 +44,11 @@ Scaffold-DbContext “Data Source=LAPTOP-VBLUUCQJ\SQLEXPRESS;Initial Catalog=QLB
                     <DataGridTextColumn Width="*" Header="Thành tiền" Binding="{Binding ThanhTien, Mode=OneWay, StringFormat='\{0:n0\}'}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnThem"  Content="Thêm" HorizontalAlignment="Left" Margin="96,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnThem_Click"/>
-            <Button x:Name="btnSua" Content="Sửa" HorizontalAlignment="Left" Margin="216,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnSua_Click"/>
-            <Button x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" Margin="336,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnXoa_Click"/>
-            <Button x:Name="btnTim" Content="Tìm" HorizontalAlignment="Left" Margin="456,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnTim_Click"/>
-            <Button x:Name="btnThongKe" Content="Thống kê" HorizontalAlignment="Left" Margin="576,543,0,0" VerticalAlignment="Top" Width="105" Height="40" Click="btnThongKe_Click"/>
+            <Button x:Name="btnThem"  Content="Thêm" HorizontalAlignment="Left" Margin="96,543,0,0" VerticalAlignment="Top" Width="105" Height="40" />
+            <Button x:Name="btnSua" Content="Sửa" HorizontalAlignment="Left" Margin="216,543,0,0" VerticalAlignment="Top" Width="105" Height="40"/>
+            <Button x:Name="btnXoa" Content="Xóa" HorizontalAlignment="Left" Margin="336,543,0,0" VerticalAlignment="Top" Width="105" Height="40" />
+            <Button x:Name="btnTim" Content="Tìm" HorizontalAlignment="Left" Margin="456,543,0,0" VerticalAlignment="Top" Width="105" Height="40" />
+            <Button x:Name="btnThongKe" Content="Thống kê" HorizontalAlignment="Left" Margin="576,543,0,0" VerticalAlignment="Top" Width="105" Height="40" />
 
         </Grid>
 //================================================================================================
